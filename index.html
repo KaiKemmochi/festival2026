@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026年 お祭り役割分担表</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 15px;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #d9534f;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1rem;
+            background-color: #fff;
+        }
+        .btn-search {
+            width: 100%;
+            padding: 12px;
+            background-color: #d9534f;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-search:hover {
+            background-color: #c9302c;
+        }
+        .result-title {
+            margin-top: 25px;
+            font-size: 1.1rem;
+            border-left: 5px solid #d9534f;
+            padding-left: 10px;
+            font-weight: bold;
+        }
+        .schedule-item {
+            background: #f9f9f9;
+            border: 1px solid #eef;
+            padding: 12px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .time-badge {
+            display: inline-block;
+            background: #5bc0de;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .role-text {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .memo-text {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 5px;
+            background: #fff;
+            padding: 6px;
+            border-left: 3px solid #ccc;
+        }
+        .no-plan {
+            text-align: center;
+            color: #999;
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>2026年 お祭り役割分担表</h1>
+    
+    <div class="form-group">
+        <label for="dateSelect">① 日付を選択</label>
+        <select id="dateSelect">
+            <option value="6/7">6/7(金)</option>
+            <option value="6/8">6/8(土)</option>
+            <option value="6/9">6/9(日)</option>
+            <option value="6/10">6/10(月)</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="nameSelect">② 名前を選択</label>
+        <select id="nameSelect">
+            <option value="相原">相原</option>
+            <option value="小宮山">小宮山</option>
+            <option value="吉野秀青海">吉野秀青海</option>
+            <option value="剣持">剣持</option>
+            <option value="大木正">大木正</option>
+            <option value="大木佳">大木佳</option>
+            <option value="藤井">藤井</option>
+            <option value="池田">池田</option>
+            <option value="長谷川">長谷川</option>
+            <option value="蟹江">蟹江</option>
+            <option value="友滝寺本">友滝寺本</option>
+            <option value="岩崎">岩崎</option>
+            <option value="舘野">舘野</option>
+            <option value="津田">津田</option>
+            <option value="稲垣">稲垣</option>
+            <option value="西島">西島</option>
+            <option value="大石">大石</option>
+            <option value="倉田け">倉田け</option>
+            <option value="倉田ゆ">倉田ゆ</option>
+            <option value="加藤父">加藤父</option>
+            <option value="加藤ひ">加藤ひ</option>
+            <option value="加藤宏太郎">加藤宏太郎</option>
+            <option value="加藤宏樹">加藤宏樹</option>
+            <option value="吉野敏">吉野敏</option>
+            <option value="鈴木">鈴木</option>
+            <option value="一木">一木</option>
+            <option value="清野">清野</option>
+        </select>
+    </div>
+
+    <button class="btn-search" onclick="showSchedule()">予定を表示する</button>
+
+    <div id="resultArea"></div>
+</div>
+
+<script>
+// PDFから抽出したデータをマッピング
+const festivalData = {
+    "6/7": {
+        memos: {
+            "9:00": "神酒所づくり、桃太郎",
+            "10:00": "神社清掃",
+            "11:00": "13:00 神酒所開設",
+            "14:00": "大祭式 (水・お茶を冷凍庫に)",
+            "15:00": "リヤカー準備、菓子準備 / 15:20 小御輿出発 / 15:30 小御輿出御城二小",
+            "16:00": "16:30 小御輿休憩@新馬場駅",
+            "17:00": "17:30 松の広場到着、幕・の用意",
+            "20:00": "御霊入れ(予定)"
+        },
+        roles: {
+            "相原": {"9:00": "神酒所", "11:00": "買出し、小御輿(黄色)、信金・三和バイロン、御霊入れ"},
+            "小宮山": {"9:00": "神酒所", "11:00": "山車づくり、小御輿、買出し、スペロペロン、ハイイロン、パイロン、小御輿(菓子)、小御園(黄色)、信金・三和バイロン設置、御霊入れ(幕持ち)"},
+            "吉野秀青海": {"9:00": "神酒所", "11:00": "御霊入れ"},
+            "剣持": {"9:00": "神酒所"},
+            "大木正": {"9:00": "神酒所"},
+            "大木佳": {"9:00": "神酒所", "11:00": "山車づくり、バイロン、小(リヤカー)、信金・三和パイロン設置、御霊入れ(幕持ち)"},
+            "藤井": {"9:00": "神酒所"},
+            "池田": {"9:00": "神酒所", "11:00": "小御(リヤカー)、信金・三和バイロン設置、御霊入れ"},
+            "長谷川": {"9:00": "神酒所"},
+            "蟹江": {"11:00": "小御輿、信金・三和バイロン設置"},
+            "友滝寺本": {"11:00": "御霊入れ(幕持ち)"},
+            "岩崎": {"11:00": "山車づくり、小御輿、信金・三和バイロン設置、御霊入れ(幕持ち)"},
+            "舘野": {}, "津田": {}, "稲垣": {}, "西島": {}, "大石": {}, "倉田け": {}, "倉田ゆ": {},
+            "加藤父": {"9:00": "神酒所", "11:00": "山車づくり、準備、バイロン、小御輿、水準備(菓子配)、信金・三和バイロン設置、夕準備、御霊入れ"},
+            "加藤ひ": {"9:00": "神酒所", "11:00": "山車づくり、準備、バイロン、小御輿、水準備(菓子配)、信金・三和バイロン設置、夕準備、御霊入れ"},
+            "加藤宏太郎": {"11:00": "山車づくり、神酒所、御霊入れ"},
+            "加藤宏樹": {"11:00": "山車づくり、買出し(葛・乾物・野菜・榊・果物・餅)、パイロン出し(バイ50バー30)"},
+            "吉野敏": {}, "鈴木": {}, "一木": {}, "清野": {}
+        }
+    },
+    "6/8": {
+        memos: {
+            "7:00": "清掃、水・お茶を冷凍庫に",
+            "8:00": "8:30 大神輿出御、9:00 大神輿宮入",
+            "10:00": "水・お茶を冷凍庫に / 10:30 休憩@新馬場 (おにぎり伊勢屋100)",
+            "12:00": "松の広場到着",
+            "13:00": "13:30 リヤカー準備、菓子準備、水・お茶を冷凍庫に(城南信金の助っ人あり?)",
+            "14:00": "小・中神輿出御、山車出発 / 14:30 小・中神輿、山車宮入",
+            "15:00": "15:30 休憩@同友会",
+            "16:00": "16:30 松の広場到着",
+            "17:00": "夕準備", "18:00": "夕準備"
+        },
+        roles: {
+            "相原": {"8:00": "大神輿、小御輿(黄色)"},
+            "小宮山": {"8:00": "大神輿、中神輿、山車"},
+            "吉野秀青海": {"8:00": "大神輿(黄色)"},
+            "剣持": {"8:00": "中神輿"},
+            "大木正": {"8:00": "神酒所"},
+            "大木佳": {},
+            "藤井": {"8:00": "神酒所"},
+            "池田": {"8:00": "山車(桃太郎)"},
+            "長谷川": {"8:00": "山車(黄色)"},
+            "蟹江": {"8:00": "大神輿、中神輿"},
+            "友滝寺本": {"8:00": "大神輿(リヤカー)準備、中神輿(リヤカー)、大神輿、水準備、小御輿、山車"},
+            "岩崎": {"8:00": "小御輿"},
+            "舘野": {"8:00": "神酒所"},
+            "津田": {},
+            "稲垣": {"8:00": "大神輿(リヤカー)、中神輿、山車"},
+            "西島": {"8:00": "大神輿、山車"},
+            "大石": {},
+            "倉田け": {"8:00": "大神輿、山車(桃太郎)"},
+            "倉田ゆ": {"8:00": "神酒所"},
+            "加藤父": {"8:00": "神酒所、大神輿、水準備、昼準備、小御輿"},
+            "加藤ひ": {"8:00": "神酒所、大神輿、水準備、昼準備、小御輿"},
+            "加藤宏太郎": {"8:00": "中神輿、神酒所"},
+            "加藤宏樹": {"8:00": "大神輿、神酒所"},
+            "吉野敏": {}, "鈴木": {},
+            "一木": {"16:00": "水準備(菓子配)"},
+            "清野": {"17:00": "神酒所", "18:00": "神酒所"}
+        }
+    },
+    "6/9": {
+        memos: {
+            "7:00": "清掃", "8:00": "8:30 水・お茶を冷凍庫に",
+            "9:00": "リヤカー準備、菓子準備 / 9:30 小・中神輿出御、山車出発",
+            "10:00": "10:30 休憩@三会会館",
+            "11:00": "11:30 松の広場到着、水・お茶を冷凍庫に",
+            "12:00": "12:30 リヤカー準備、菓子準備",
+            "13:00": "小 Im中神輿出御、山車出発 / 13:30 六行会休憩",
+            "14:00": "福栄会休憩 / 14:30 松の広場到着",
+            "15:00": "リヤカー準備、接待準備 / 15:30 水・お茶を冷凍庫に",
+            "16:00": "16:30 セレモニー (おにぎり@伊勢屋100)",
+            "18:00": "水・お茶を冷凍庫に / 18:30 休憩@ニチゲン、高張用意",
+            "20:00": "松の広場到着、棒の用意 / 20:20 御霊抜き(予定)",
+            "21:00": "片付け"
+        },
+        roles: {
+            "相原": {"9:00": "小御輿(黄色)、大神輿(黄色)、御霊抜き"},
+            "小宮山": {"9:00": "中神輿(黄色)、中神輿、大神輿(黄色)、御霊抜き"},
+            "吉野秀青海": {"9:00": "山車(菓子券)、大神輿、御霊抜き"},
+            "剣持": {"9:00": "小御輿(黄色)、中神輿、中神輿、小御輿、水準備、大神輿(リヤカー)、大神輿、水準備、大神輿、御霊抜き、御霊抜き"},
+            "大木正": {"9:00": "神酒所"},
+            "大木佳": {},
+            "藤井": {"9:00": "山車(桃太郎)、神酒所"},
+            "池田": {"9:00": "山車(黄色)、神酒所"},
+            "長谷川": {"9:00": "中神輿、水準備、中神輿(リヤカー)、大神輿、高張(幕持ち)、御霊抜き"},
+            "蟹江": {"9:00": "小御輿(リヤカー)、中神輿、大神輿、御霊抜き(幕持ち)"},
+            "友滝寺本": {"9:00": "小御輿、高張、御霊抜き"},
+            "岩崎": {"9:00": "小御輿(リヤカー)、中神輿、大神輿、御霊抜き(幕持ち)、神酒所"},
+            "舘野": {"9:00": "中神輿、大神輿、御霊抜き"},
+            "津田": {"9:00": "大神輿、水準備、御霊抜き"},
+            "稲垣": {"9:00": "山車、大神輿、御霊抜き"},
+            "西島": {"9:00": "山車、大神輿、御霊抜き"},
+            "大石": {"9:00": "山車(桃太郎)、大神輿、御霊抜き(幕持ち)"},
+            "倉田け": {"9:00": "神酒所"},
+            "倉田ゆ": {"9:00": "神酒所"},
+            "加藤父": {"9:00": "菓子配、昼準備、夕準備、小御輿、水準備、小御輿、水準備、大神輿、水準備、御霊抜き"},
+            "加藤ひ": {"9:00": "菓子配、昼準備、夕準備、小御輿、水準備、小御輿、水準備、大神輿、水準備、御霊抜き"},
+            "加藤宏太郎": {"9:00": "神酒所"},
+            "加藤宏樹": {"9:00": "神酒所"},
+            "吉野敏": {"21:00": "片付け"}, "鈴木": {"21:00": "片付け"}, "一木": {"21:00": "片付け"}, "清野": {"21:00": "片付け"}
+        }
+    },
+    "6/10": {
+        memos: {
+            "8:00": "清掃、片付け、神酒所片付け"
+        },
+        roles: {
+            "小宮山": {"8:00": "清掃、片付け"},
+            "吉野秀青海": {"8:00": "清掃、片付け"},
+            "剣持": {"8:00": "(清掃)、神酒所片付け"},
+            "大木正": {"8:00": "(清掃)、神酒所片付け"},
+            "大木佳": {"8:00": "(清掃)、神酒所片付け"},
+            "倉田ゆ": {"8:00": "(清掃)、片付け"}
+        }
+    }
+};
+
+// 最終日の全員一斉片付け用のリスト
+const allCleanUpList = ["相原","小宮山","吉野秀青海","剣持","大木正","大木佳","藤井","池田","長谷川","蟹江","友滝寺本","岩崎","舘野","津田","稲垣","西島","大石","倉田け","倉田ゆ","加藤父","加藤ひ","加藤宏太郎","加藤宏樹","吉野敏","鈴木","一木","清野"];
+
+function showSchedule() {
+    const date = document.getElementById("dateSelect").value;
+    const name = document.getElementById("nameSelect").value;
+    const resultArea = document.getElementById("resultArea");
+    
+    resultArea.innerHTML = "";
+    
+    // タイトル表示
+    const title = document.createElement("div");
+    title.className = "result-title";
+    title.innerText = `${date}の日程 - ${name} さんの予定`;
+    resultArea.appendChild(title);
+    
+    const dayData = festivalData[date];
+    if (!dayData) return;
+
+    let hasPlan = false;
+    
+    // 時間帯ごとにスケジュールをチェック
+    const times = ["7:00", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"];
+    
+    times.forEach(time => {
+        let role = "";
+        
+        // 6/9 21:00 の全体片付け特殊判定
+        if (date === "6/9" && time === "21:00" && allCleanUpList.includes(name)) {
+            role = "片付け（全員）";
+        } else if (dayData.roles[name] && dayData.roles[name][time]) {
+            role = dayData.roles[name][time];
+        } else if (time === "11:00" && dayData.roles[name] && dayData.roles[name]["11:00"]) {
+            // 6/7の11:00~19:00など、まとまったシフトの救済
+            role = dayData.roles[name]["11:00"];
+        }
+        
+        // 役割がある、またはその時間に全体備考がある場合表示
+        const memo = dayData.memos[time];
+        
+        if (role || memo) {
+            // 自分の役割がなくても、全体の動き（備考）があれば表示して流れをわかりやすくする
+            if (!role) role = "（個別の役割指定なし／フリー）";
+            else hasPlan = true;
+            
+            const item = document.createElement("div");
+            item.className = "schedule-item";
+            
+            let memoHtml = memo ? `<div class="memo-text"><strong>【全体の動き/備考】</strong><br>${memo.replace(/\s\/\s/g, '<br>')}</div>` : '';
+            
+            item.innerHTML = `
+                <div class="time-badge">${time}〜</div>
+                <div class="role-text">担当： ${role}</div>
+                ${memoHtml}
+            `;
+            resultArea.appendChild(item);
+        }
+    });
+    
+    if (!hasPlan && resultArea.querySelectorAll('.role-text').length === 0) {
+        resultArea.innerHTML += `<div class="no-plan">この日の予定は登録されていません。</div>`;
+    }
+}
+</script>
+
+</body>
+</html>
