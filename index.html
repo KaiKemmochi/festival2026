@@ -1,358 +1,614 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026年 お祭り役割分担表</title>
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f4f6f9;
-            margin: 0;
-            padding: 15px;
-            color: #333;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            font-size: 1.5rem;
-            color: #d9534f;
-            margin-bottom: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-        select {
-            width: 100%;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-            background-color: #fff;
-        }
-        .btn-search {
-            width: 100%;
-            padding: 12px;
-            background-color: #d9534f;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .btn-search:hover {
-            background-color: #c9302c;
-        }
-        .result-title {
-            margin-top: 25px;
-            font-size: 1.1rem;
-            border-left: 5px solid #d9534f;
-            padding-left: 10px;
-            font-weight: bold;
-        }
-        .schedule-item {
-            background: #f9f9f9;
-            border: 1px solid #eef;
-            padding: 12px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .time-badge {
-            display: inline-block;
-            background: #5bc0de;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-size: 0.85rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .role-text {
-            font-size: 1rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        .memo-text {
-            font-size: 0.85rem;
-            color: #666;
-            margin-top: 5px;
-            background: #fff;
-            padding: 6px;
-            border-left: 3px solid #ccc;
-        }
-        .no-plan {
-            text-align: center;
-            color: #999;
-            margin-top: 20px;
-            font-style: italic;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>2026 宮本祭典委員会 役割分担</title>
+<style>
+  :root {
+    --red: #C0392B;
+    --red-dark: #922B21;
+    --red-light: #F1948A;
+    --gold: #D4AC0D;
+    --gold-light: #F9E79F;
+    --cream: #FEF9F0;
+    --navy: #1A252F;
+    --navy-light: #2C3E50;
+    --gray: #7F8C8D;
+    --gray-light: #ECF0F1;
+    --white: #FFFFFF;
+    --highlight: #FFF3CD;
+    --highlight-border: #FBBF24;
+    --same-role: #D5F5E3;
+    --same-role-border: #27AE60;
+    --other-bg: #EBF5FB;
+    --other-border: #2980B9;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: var(--cream);
+    color: var(--navy);
+    min-height: 100vh;
+  }
+
+  /* ヘッダー */
+  header {
+    background: linear-gradient(135deg, var(--red-dark) 0%, var(--red) 60%, #E74C3C 100%);
+    color: white;
+    padding: 20px 16px 16px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.3);
+  }
+
+  .header-deco {
+    font-size: 10px;
+    letter-spacing: 6px;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+    opacity: 0.9;
+  }
+
+  header h1 {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.3;
+  }
+
+  header p {
+    font-size: 11px;
+    margin-top: 4px;
+    opacity: 0.8;
+    letter-spacing: 1px;
+  }
+
+  /* セレクション エリア */
+  .select-area {
+    padding: 16px;
+    background: white;
+    border-bottom: 3px solid var(--gold);
+  }
+
+  .select-area h2 {
+    font-size: 13px;
+    color: var(--gray);
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+  }
+
+  .select-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .select-wrap {
+    flex: 1;
+    position: relative;
+  }
+
+  .select-wrap label {
+    display: block;
+    font-size: 11px;
+    color: var(--red);
+    font-weight: 700;
+    margin-bottom: 4px;
+    letter-spacing: 1px;
+  }
+
+  select {
+    width: 100%;
+    padding: 10px 32px 10px 12px;
+    border: 2px solid var(--red-light);
+    border-radius: 8px;
+    background: white;
+    font-size: 15px;
+    color: var(--navy);
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+    transition: border-color 0.2s;
+  }
+
+  select:focus {
+    outline: none;
+    border-color: var(--red);
+    box-shadow: 0 0 0 3px rgba(192,57,43,0.15);
+  }
+
+  .select-arrow {
+    position: absolute;
+    right: 10px;
+    bottom: 12px;
+    color: var(--red);
+    pointer-events: none;
+    font-size: 14px;
+  }
+
+  .btn-show {
+    width: 100%;
+    padding: 13px;
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s;
+    box-shadow: 0 4px 12px rgba(192,57,43,0.3);
+    font-family: inherit;
+  }
+
+  .btn-show:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 6px rgba(192,57,43,0.3);
+  }
+
+  /* プレースホルダー */
+  .placeholder {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--gray);
+  }
+
+  .placeholder-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .placeholder p {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  /* 結果エリア */
+  #result {
+    padding: 16px;
+  }
+
+  /* 自分の役割 ヒーローカード */
+  .my-role-hero {
+    background: linear-gradient(135deg, var(--red) 0%, var(--red-dark) 100%);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+    color: white;
+    box-shadow: 0 6px 20px rgba(192,57,43,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .my-role-hero::before {
+    content: '🏮';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 52px;
+    opacity: 0.15;
+  }
+
+  .my-role-hero .date-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .my-role-hero .person-name {
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+
+  .my-role-hero .role-count {
+    font-size: 12px;
+    opacity: 0.8;
+  }
+
+  /* スケジュール カード */
+  .schedule-section {
+    margin-bottom: 8px;
+  }
+
+  .time-card {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .time-header {
+    display: flex;
+    align-items: center;
+    padding: 10px 14px;
+    background: var(--navy);
+    color: white;
+    gap: 10px;
+  }
+
+  .time-label {
+    font-size: 18px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    min-width: 56px;
+  }
+
+  .time-note {
+    font-size: 11px;
+    color: #BDC3C7;
+    flex: 1;
+    line-height: 1.4;
+  }
+
+  /* 自分の役割 ブロック */
+  .my-role-block {
+    padding: 12px 14px;
+    background: var(--highlight);
+    border-left: 4px solid var(--highlight-border);
+  }
+
+  .role-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--gray);
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .role-text {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.3;
+  }
+
+  /* 同じ役割の人 */
+  .same-role-block {
+    padding: 10px 14px;
+    background: var(--same-role);
+    border-left: 4px solid var(--same-role-border);
+  }
+
+  .same-role-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+
+  .name-chip {
+    background: white;
+    border: 1.5px solid var(--same-role-border);
+    border-radius: 20px;
+    padding: 3px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+  }
+
+  /* 他の人の役割 */
+  .others-block {
+    padding: 10px 14px;
+    background: var(--other-bg);
+    border-left: 4px solid var(--other-border);
+  }
+
+  .others-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .other-row {
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+
+  .other-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy-light);
+    min-width: 60px;
+  }
+
+  .other-role {
+    font-size: 12px;
+    color: var(--gray);
+    flex: 1;
+  }
+
+  /* 空きスロット */
+  .no-duty {
+    padding: 10px 14px;
+    color: var(--gray);
+    font-size: 13px;
+    font-style: italic;
+  }
+
+  /* 備考 ブロック */
+  .note-block {
+    padding: 10px 14px;
+    background: #FEF9E7;
+    border-top: 1px dashed var(--gold);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  .note-icon {
+    font-size: 14px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .note-text {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #7D6608;
+  }
+
+  /* まとめ表示のない日 */
+  .no-schedule {
+    text-align: center;
+    padding: 32px 20px;
+    color: var(--gray);
+    background: white;
+    border-radius: 12px;
+    font-size: 14px;
+  }
+
+  /* 区切り線 */
+  .divider {
+    height: 1px;
+    background: var(--gray-light);
+  }
+
+  /* フッター */
+  footer {
+    text-align: center;
+    padding: 20px;
+    color: var(--gray);
+    font-size: 11px;
+    border-top: 1px solid var(--gray-light);
+    margin-top: 10px;
+  }
+
+  /* アニメーション */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .time-card {
+    animation: fadeIn 0.25s ease both;
+  }
+
+  .time-card:nth-child(1) { animation-delay: 0.05s; }
+  .time-card:nth-child(2) { animation-delay: 0.10s; }
+  .time-card:nth-child(3) { animation-delay: 0.15s; }
+  .time-card:nth-child(4) { animation-delay: 0.20s; }
+  .time-card:nth-child(5) { animation-delay: 0.25s; }
+  .time-card:nth-child(6) { animation-delay: 0.30s; }
+  .time-card:nth-child(7) { animation-delay: 0.35s; }
+  .time-card:nth-child(8) { animation-delay: 0.40s; }
+  .time-card:nth-child(9) { animation-delay: 0.45s; }
+  .time-card:nth-child(10) { animation-delay: 0.50s; }
+</style>
 </head>
 <body>
 
-<div class="container">
-    <h1>2026年 お祭り役割分担表</h1>
-    
-    <div class="form-group">
-        <label for="dateSelect">① 日付を選択</label>
-        <select id="dateSelect">
-            <option value="6/7">6/7(金)</option>
-            <option value="6/8">6/8(土)</option>
-            <option value="6/9">6/9(日)</option>
-            <option value="6/10">6/10(月)</option>
-        </select>
+<header>
+  <div class="header-deco">◆ 宮本 ◆</div>
+  <h1>2026年 宮本祭典委員会<br>役割分担表</h1>
+  <p>日付と名前を選んでください</p>
+</header>
+
+<div class="select-area">
+  <h2>▍ 検索条件</h2>
+  <div class="select-row">
+    <div class="select-wrap">
+      <label>📅 日付</label>
+      <select id="dateSelect">
+        <option value="">— 日付を選ぶ —</option>
+        <option value="6/7（金）">6/7（金）</option>
+        <option value="6/8（土）">6/8（土）</option>
+        <option value="6/9（日）">6/9（日）</option>
+        <option value="6/10（月）">6/10（月）</option>
+      </select>
+      <span class="select-arrow">▼</span>
     </div>
-
-    <div class="form-group">
-        <label for="nameSelect">② 名前を選択</label>
-        <select id="nameSelect">
-            <option value="相原">相原</option>
-            <option value="小宮山">小宮山</option>
-            <option value="吉野秀青海">吉野秀青海</option>
-            <option value="剣持">剣持</option>
-            <option value="大木正">大木正</option>
-            <option value="大木佳">大木佳</option>
-            <option value="藤井">藤井</option>
-            <option value="池田">池田</option>
-            <option value="長谷川">長谷川</option>
-            <option value="蟹江">蟹江</option>
-            <option value="友滝寺本">友滝寺本</option>
-            <option value="岩崎">岩崎</option>
-            <option value="舘野">舘野</option>
-            <option value="津田">津田</option>
-            <option value="稲垣">稲垣</option>
-            <option value="西島">西島</option>
-            <option value="大石">大石</option>
-            <option value="倉田け">倉田け</option>
-            <option value="倉田ゆ">倉田ゆ</option>
-            <option value="加藤父">加藤父</option>
-            <option value="加藤ひ">加藤ひ</option>
-            <option value="加藤宏太郎">加藤宏太郎</option>
-            <option value="加藤宏樹">加藤宏樹</option>
-            <option value="吉野敏">吉野敏</option>
-            <option value="鈴木">鈴木</option>
-            <option value="一木">一木</option>
-            <option value="清野">清野</option>
-        </select>
+    <div class="select-wrap">
+      <label>👤 名前</label>
+      <select id="nameSelect">
+        <option value="">— 名前を選ぶ —</option>
+        <option>相原</option>
+        <option>小宮山</option>
+        <option>吉野秀</option>
+        <option>青海</option>
+        <option>剣持</option>
+        <option>大木正</option>
+        <option>大木佳</option>
+        <option>藤井</option>
+        <option>池田</option>
+        <option>長谷川</option>
+        <option>蟹江</option>
+        <option>友滝</option>
+        <option>寺本</option>
+        <option>岩崎</option>
+        <option>舘野</option>
+        <option>津田</option>
+        <option>稲垣</option>
+        <option>西島</option>
+        <option>大石</option>
+        <option>倉田け</option>
+        <option>倉田ゆ</option>
+        <option>加藤父</option>
+        <option>加藤ひ</option>
+        <option>加藤宏太郎</option>
+        <option>加藤宏樹</option>
+        <option>吉野敏</option>
+        <option>鈴木</option>
+        <option>一木</option>
+        <option>清野</option>
+      </select>
+      <span class="select-arrow">▼</span>
     </div>
-
-    <button class="btn-search" onclick="showSchedule()">予定を表示する</button>
-
-    <div id="resultArea"></div>
+  </div>
+  <button class="btn-show" onclick="showSchedule()">🔍 役割を確認する</button>
 </div>
 
-<script>
-// PDFから抽出したデータをマッピング
-const festivalData = {
-    "6/7": {
-        memos: {
-            "9:00": "神酒所づくり、桃太郎",
-            "10:00": "神社清掃",
-            "11:00": "13:00 神酒所開設",
-            "14:00": "大祭式 (水・お茶を冷凍庫に)",
-            "15:00": "リヤカー準備、菓子準備 / 15:20 小御輿出発 / 15:30 小御輿出御城二小",
-            "16:00": "16:30 小御輿休憩@新馬場駅",
-            "17:00": "17:30 松の広場到着、幕・の用意",
-            "20:00": "御霊入れ(予定)"
-        },
-        roles: {
-            "相原": {"9:00": "神酒所", "11:00": "買出し、小御輿(黄色)、信金・三和バイロン、御霊入れ"},
-            "小宮山": {"9:00": "神酒所", "11:00": "山車づくり、小御輿、買出し、スペロペロン、ハイイロン、パイロン、小御輿(菓子)、小御園(黄色)、信金・三和バイロン設置、御霊入れ(幕持ち)"},
-            "吉野秀青海": {"9:00": "神酒所", "11:00": "御霊入れ"},
-            "剣持": {"9:00": "神酒所"},
-            "大木正": {"9:00": "神酒所"},
-            "大木佳": {"9:00": "神酒所", "11:00": "山車づくり、バイロン、小(リヤカー)、信金・三和パイロン設置、御霊入れ(幕持ち)"},
-            "藤井": {"9:00": "神酒所"},
-            "池田": {"9:00": "神酒所", "11:00": "小御(リヤカー)、信金・三和バイロン設置、御霊入れ"},
-            "長谷川": {"9:00": "神酒所"},
-            "蟹江": {"11:00": "小御輿、信金・三和バイロン設置"},
-            "友滝寺本": {"11:00": "御霊入れ(幕持ち)"},
-            "岩崎": {"11:00": "山車づくり、小御輿、信金・三和バイロン設置、御霊入れ(幕持ち)"},
-            "舘野": {}, "津田": {}, "稲垣": {}, "西島": {}, "大石": {}, "倉田け": {}, "倉田ゆ": {},
-            "加藤父": {"9:00": "神酒所", "11:00": "山車づくり、準備、バイロン、小御輿、水準備(菓子配)、信金・三和バイロン設置、夕準備、御霊入れ"},
-            "加藤ひ": {"9:00": "神酒所", "11:00": "山車づくり、準備、バイロン、小御輿、水準備(菓子配)、信金・三和バイロン設置、夕準備、御霊入れ"},
-            "加藤宏太郎": {"11:00": "山車づくり、神酒所、御霊入れ"},
-            "加藤宏樹": {"11:00": "山車づくり、買出し(葛・乾物・野菜・榊・果物・餅)、パイロン出し(バイ50バー30)"},
-            "吉野敏": {}, "鈴木": {}, "一木": {}, "清野": {}
-        }
-    },
-    "6/8": {
-        memos: {
-            "7:00": "清掃、水・お茶を冷凍庫に",
-            "8:00": "8:30 大神輿出御、9:00 大神輿宮入",
-            "10:00": "水・お茶を冷凍庫に / 10:30 休憩@新馬場 (おにぎり伊勢屋100)",
-            "12:00": "松の広場到着",
-            "13:00": "13:30 リヤカー準備、菓子準備、水・お茶を冷凍庫に(城南信金の助っ人あり?)",
-            "14:00": "小・中神輿出御、山車出発 / 14:30 小・中神輿、山車宮入",
-            "15:00": "15:30 休憩@同友会",
-            "16:00": "16:30 松の広場到着",
-            "17:00": "夕準備", "18:00": "夕準備"
-        },
-        roles: {
-            "相原": {"8:00": "大神輿、小御輿(黄色)"},
-            "小宮山": {"8:00": "大神輿、中神輿、山車"},
-            "吉野秀青海": {"8:00": "大神輿(黄色)"},
-            "剣持": {"8:00": "中神輿"},
-            "大木正": {"8:00": "神酒所"},
-            "大木佳": {},
-            "藤井": {"8:00": "神酒所"},
-            "池田": {"8:00": "山車(桃太郎)"},
-            "長谷川": {"8:00": "山車(黄色)"},
-            "蟹江": {"8:00": "大神輿、中神輿"},
-            "友滝寺本": {"8:00": "大神輿(リヤカー)準備、中神輿(リヤカー)、大神輿、水準備、小御輿、山車"},
-            "岩崎": {"8:00": "小御輿"},
-            "舘野": {"8:00": "神酒所"},
-            "津田": {},
-            "稲垣": {"8:00": "大神輿(リヤカー)、中神輿、山車"},
-            "西島": {"8:00": "大神輿、山車"},
-            "大石": {},
-            "倉田け": {"8:00": "大神輿、山車(桃太郎)"},
-            "倉田ゆ": {"8:00": "神酒所"},
-            "加藤父": {"8:00": "神酒所、大神輿、水準備、昼準備、小御輿"},
-            "加藤ひ": {"8:00": "神酒所、大神輿、水準備、昼準備、小御輿"},
-            "加藤宏太郎": {"8:00": "中神輿、神酒所"},
-            "加藤宏樹": {"8:00": "大神輿、神酒所"},
-            "吉野敏": {}, "鈴木": {},
-            "一木": {"16:00": "水準備(菓子配)"},
-            "清野": {"17:00": "神酒所", "18:00": "神酒所"}
-        }
-    },
-    "6/9": {
-        memos: {
-            "7:00": "清掃", "8:00": "8:30 水・お茶を冷凍庫に",
-            "9:00": "リヤカー準備、菓子準備 / 9:30 小・中神輿出御、山車出発",
-            "10:00": "10:30 休憩@三会会館",
-            "11:00": "11:30 松の広場到着、水・お茶を冷凍庫に",
-            "12:00": "12:30 リヤカー準備、菓子準備",
-            "13:00": "小 Im中神輿出御、山車出発 / 13:30 六行会休憩",
-            "14:00": "福栄会休憩 / 14:30 松の広場到着",
-            "15:00": "リヤカー準備、接待準備 / 15:30 水・お茶を冷凍庫に",
-            "16:00": "16:30 セレモニー (おにぎり@伊勢屋100)",
-            "18:00": "水・お茶を冷凍庫に / 18:30 休憩@ニチゲン、高張用意",
-            "20:00": "松の広場到着、棒の用意 / 20:20 御霊抜き(予定)",
-            "21:00": "片付け"
-        },
-        roles: {
-            "相原": {"9:00": "小御輿(黄色)、大神輿(黄色)、御霊抜き"},
-            "小宮山": {"9:00": "中神輿(黄色)、中神輿、大神輿(黄色)、御霊抜き"},
-            "吉野秀青海": {"9:00": "山車(菓子券)、大神輿、御霊抜き"},
-            "剣持": {"9:00": "小御輿(黄色)、中神輿、中神輿、小御輿、水準備、大神輿(リヤカー)、大神輿、水準備、大神輿、御霊抜き、御霊抜き"},
-            "大木正": {"9:00": "神酒所"},
-            "大木佳": {},
-            "藤井": {"9:00": "山車(桃太郎)、神酒所"},
-            "池田": {"9:00": "山車(黄色)、神酒所"},
-            "長谷川": {"9:00": "中神輿、水準備、中神輿(リヤカー)、大神輿、高張(幕持ち)、御霊抜き"},
-            "蟹江": {"9:00": "小御輿(リヤカー)、中神輿、大神輿、御霊抜き(幕持ち)"},
-            "友滝寺本": {"9:00": "小御輿、高張、御霊抜き"},
-            "岩崎": {"9:00": "小御輿(リヤカー)、中神輿、大神輿、御霊抜き(幕持ち)、神酒所"},
-            "舘野": {"9:00": "中神輿、大神輿、御霊抜き"},
-            "津田": {"9:00": "大神輿、水準備、御霊抜き"},
-            "稲垣": {"9:00": "山車、大神輿、御霊抜き"},
-            "西島": {"9:00": "山車、大神輿、御霊抜き"},
-            "大石": {"9:00": "山車(桃太郎)、大神輿、御霊抜き(幕持ち)"},
-            "倉田け": {"9:00": "神酒所"},
-            "倉田ゆ": {"9:00": "神酒所"},
-            "加藤父": {"9:00": "菓子配、昼準備、夕準備、小御輿、水準備、小御輿、水準備、大神輿、水準備、御霊抜き"},
-            "加藤ひ": {"9:00": "菓子配、昼準備、夕準備、小御輿、水準備、小御輿、水準備、大神輿、水準備、御霊抜き"},
-            "加藤宏太郎": {"9:00": "神酒所"},
-            "加藤宏樹": {"9:00": "神酒所"},
-            "吉野敏": {"21:00": "片付け"}, "鈴木": {"21:00": "片付け"}, "一木": {"21:00": "片付け"}, "清野": {"21:00": "片付け"}
-        }
-    },
-    "6/10": {
-        memos: {
-            "8:00": "清掃、片付け、神酒所片付け"
-        },
-        roles: {
-            "小宮山": {"8:00": "清掃、片付け"},
-            "吉野秀青海": {"8:00": "清掃、片付け"},
-            "剣持": {"8:00": "(清掃)、神酒所片付け"},
-            "大木正": {"8:00": "(清掃)、神酒所片付け"},
-            "大木佳": {"8:00": "(清掃)、神酒所片付け"},
-            "倉田ゆ": {"8:00": "(清掃)、片付け"}
-        }
-    }
-};
+<div id="result">
+  <div class="placeholder">
+    <span class="placeholder-icon">🏮</span>
+    <p>日付と名前を選んで<br>「役割を確認する」を押してください</p>
+  </div>
+</div>
 
-// 最終日の全員一斉片付け用のリスト
-const allCleanUpList = ["相原","小宮山","吉野秀青海","剣持","大木正","大木佳","藤井","池田","長谷川","蟹江","友滝寺本","岩崎","舘野","津田","稲垣","西島","大石","倉田け","倉田ゆ","加藤父","加藤ひ","加藤宏太郎","加藤宏樹","吉野敏","鈴木","一木","清野"];
+<footer>
+  2026 宮本祭典委員会　役割分担表
+</footer>
+
+<script>
+const DATA = [{"date":"6/7（金）","slots":[{"time":"09:00","roles":[{"name":"相原","role":"会館集合"},{"name":"小宮山","role":"会館集合"},{"name":"吉野秀","role":"会館集合"},{"name":"青海","role":"会館集合"},{"name":"剣持","role":null},{"name":"大木正","role":"神酒所"},{"name":"大木佳","role":null},{"name":"藤井","role":"神酒所"},{"name":"池田","role":"神酒所"},{"name":"長谷川","role":null},{"name":"蟹江","role":"会館集合"},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":"会館集合"},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":"会館集合"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":"会館集合"},{"name":"清野","role":null}],"note":"神酒所づくり<br>諸々準備"},{"time":"10:00","roles":[{"name":"相原","role":"神社清掃"},{"name":"小宮山","role":"神社清掃"},{"name":"吉野秀","role":null},{"name":"青海","role":"パイロン"},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":"パイロン"},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":"パイロン"},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":"パイロン"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"神社清掃<br>パイロン借出し（パイ50,バー40）"},{"time":"11:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":"買出し"},{"name":"吉野秀","role":"山車づくり"},{"name":"青海","role":"山車づくり 宝喜家"},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":"山車づくり"},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":"山車づくり"},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":"山車づくり 宝喜家"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":"山車づくり"},{"name":"清野","role":null}],"note":"山車づくり<br>買出し（葛・乾物・野菜・榊・果物・餅）<br>11-11:30 宝喜家に取りに行く"},{"time":"12:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":"神酒所"},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":"昼準備"},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":null},{"time":"13:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":"神酒所"},{"name":"清野","role":null}],"note":"13:00 神酒所開設"},{"time":"14:00","roles":[{"name":"相原","role":"大祭式"},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"14:00 大祭式<br>　　　　水・お茶・ジュースを冷凍庫に"},{"time":"15:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":"小御輿 （黄色襷）"},{"name":"吉野秀","role":"小御輿 （菓子券）"},{"name":"青海","role":"小御輿"},{"name":"剣持","role":"小御輿 （黄色襷）"},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":"小御輿 （リヤカー）"},{"name":"友滝","role":null},{"name":"寺本","role":"小御輿"},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":"小御輿"},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":"小御輿"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"15:00 リヤカー準備、菓子準備<br>15:20 小御輿出発<br>15:30 小御輿出御＠城二小"},{"time":"16:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"16:30 小御輿休憩＠新馬場駅"},{"time":"17:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":"水準備"},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":"水準備"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":"（菓子配）"},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"17:30 松の広場到着"},{"time":"18:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":"信金・三和パイロン設置"},{"name":"吉野秀","role":"信金・三和パイロン設置"},{"name":"青海","role":"信金・三和パイロン設置"},{"name":"剣持","role":"信金・三和パイロン設置"},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":"信金・三和パイロン設置"},{"name":"蟹江","role":"信金・三和パイロン設置"},{"name":"友滝","role":null},{"name":"寺本","role":"信金・三和パイロン設置"},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":"信金・三和パイロン設置"},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":"信金・三和パイロン設置"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":"夕食"},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":null},{"time":"19:00","roles":[{"name":"相原","role":"御霊入れ"},{"name":"小宮山","role":"御霊入れ"},{"name":"吉野秀","role":"御霊入れ"},{"name":"青海","role":"御霊入れ"},{"name":"剣持","role":"御霊入れ （幕持ち）"},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":"御霊入れ"},{"name":"蟹江","role":"御霊入れ （幕持ち）"},{"name":"友滝","role":null},{"name":"寺本","role":"御霊入れ"},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":"御霊入れ （幕持ち）"},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":"御霊入れ （幕持ち）"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"幕・棒の用意<br><br>19:30 御霊入れ（予定）"},{"time":"20:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"夕食は20時までに済ませること！"}]},{"date":"6/8（土）","slots":[{"time":"07:00","roles":[{"name":"相原","role":"清掃"},{"name":"小宮山","role":"清掃"},{"name":"吉野秀","role":"清掃"},{"name":"青海","role":"清掃"},{"name":"剣持","role":"清掃"},{"name":"大木正","role":"清掃"},{"name":"大木佳","role":null},{"name":"藤井","role":"清掃"},{"name":"池田","role":"清掃"},{"name":"長谷川","role":"清掃"},{"name":"蟹江","role":"清掃"},{"name":"友滝","role":"清掃"},{"name":"寺本","role":"清掃"},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":"清掃"},{"name":"稲垣","role":null},{"name":"西島","role":"清掃"},{"name":"大石","role":"清掃"},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":"清掃"},{"name":"加藤宏太郎","role":"清掃"},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":"清掃"},{"name":"一木","role":"清掃"},{"name":"清野","role":"清掃"}],"note":"7:00 清掃"},{"time":"08:00","roles":[{"name":"相原","role":"大神輿"},{"name":"小宮山","role":"大神輿 （黄色襷）"},{"name":"吉野秀","role":"大神輿 （黄色襷）"},{"name":"青海","role":"大神輿"},{"name":"剣持","role":"大神輿"},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":"大神輿"},{"name":"蟹江","role":"大神輿"},{"name":"友滝","role":"大神輿"},{"name":"寺本","role":"大神輿 （リヤカー）"},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":"大神輿 （リヤカー）"},{"name":"大石","role":"大神輿"},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":"大神輿"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":"大神輿"},{"name":"一木","role":"大神輿"},{"name":"清野","role":"大神輿"}],"note":"8:00 リヤカー準備、飲み物準備<br>8:30 大神輿出御<br>　　　水・お茶２回分を冷凍庫に"},{"time":"09:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":"神酒所"},{"name":"大木佳","role":null},{"name":"藤井","role":"神酒所"},{"name":"池田","role":"神酒所"},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":"神酒所"},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":"神酒所"},{"name":"加藤宏太郎","role":"神酒所"},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":"神酒所"},{"name":"清野","role":"神酒所"}],"note":"9:00 大神輿宮入"},{"time":"10:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":"水準備   水準備"},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":"水準備  大神輿"},{"name":"友滝","role":"水準備  大神輿"},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":"水準備   水準備"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"10:00 水・お茶を冷凍庫に<br>10:30 休憩＠新馬場"},{"time":"11:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":"水準備"},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":"水準備"},{"name":"友滝","role":"水準備"},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":"昼準備"},{"name":"鈴木","role":"水準備"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"六丁目睦会＠松の広場<br>おにぎり＠伊勢屋(100)"},{"time":"12:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"12:00 松の広場到着"},{"time":"13:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"13:30 リヤカー準備、菓子準備<br>　　　　水・お茶・ジュースを冷凍庫に<br>（城南信金の助っ人あり？）"},{"time":"14:00","roles":[{"name":"相原","role":"小御輿"},{"name":"小宮山","role":"中神輿 （黄色襷）"},{"name":"吉野秀","role":"山車 （菓子券）"},{"name":"青海","role":"小御輿"},{"name":"剣持","role":"中神輿"},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":"山車 （黄色襷）"},{"name":"長谷川","role":"中神輿"},{"name":"蟹江","role":"小御輿 山車 （リヤカー）"},{"name":"友滝","role":"中神輿 （リヤカー）"},{"name":"寺本","role":"山車 （桃太郎）"},{"name":"岩崎","role":"小御輿"},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":"中神輿"},{"name":"大石","role":"山車"},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":"山車 （桃太郎）"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":"小御輿"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"14 小・中神輿出御、山車出発<br>14:30 小・中神輿、山車宮入"},{"time":"15:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"15:30 休憩＠同友会"},{"time":"16:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":"水準備"},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":"（菓子配）"},{"name":"鈴木","role":"水準備"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"16:30 松の広場到着"},{"time":"17:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":"神酒所"},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":null},{"time":"18:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":"夕食"},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":null},{"time":"20:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"夕食は20時までに済ませること！"}]},{"date":"6/9（日）","slots":[{"time":"07:00","roles":[{"name":"相原","role":"清掃"},{"name":"小宮山","role":"清掃"},{"name":"吉野秀","role":"清掃"},{"name":"青海","role":"清掃"},{"name":"剣持","role":"清掃"},{"name":"大木正","role":"清掃"},{"name":"大木佳","role":null},{"name":"藤井","role":"清掃"},{"name":"池田","role":"清掃"},{"name":"長谷川","role":"清掃"},{"name":"蟹江","role":"清掃"},{"name":"友滝","role":"清掃"},{"name":"寺本","role":"清掃"},{"name":"岩崎","role":"清掃"},{"name":"舘野","role":"清掃"},{"name":"津田","role":"清掃"},{"name":"稲垣","role":"清掃"},{"name":"西島","role":"清掃"},{"name":"大石","role":"清掃"},{"name":"倉田け","role":"清掃"},{"name":"倉田ゆ","role":"清掃"},{"name":"加藤父","role":"清掃"},{"name":"加藤ひ","role":"清掃"},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":"清掃"},{"name":"吉野敏","role":null},{"name":"鈴木","role":"清掃"},{"name":"一木","role":"清掃"},{"name":"清野","role":"清掃"}],"note":"7:00 清掃"},{"time":"08:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"8:30 水・お茶・ジュースを冷凍庫に"},{"time":"09:00","roles":[{"name":"相原","role":"小御輿"},{"name":"小宮山","role":"中神輿 （黄色襷）"},{"name":"吉野秀","role":"山車 （菓子券）"},{"name":"青海","role":"小御輿"},{"name":"剣持","role":"中神輿"},{"name":"大木正","role":"神酒所"},{"name":"大木佳","role":null},{"name":"藤井","role":"神酒所"},{"name":"池田","role":"山車 （黄色襷）"},{"name":"長谷川","role":"小御輿"},{"name":"蟹江","role":"中神輿"},{"name":"友滝","role":"中神輿"},{"name":"寺本","role":"山車 （桃太郎）"},{"name":"岩崎","role":"小御輿"},{"name":"舘野","role":"小御輿 山車 （リヤカー）"},{"name":"津田","role":"神酒所"},{"name":"稲垣","role":"神酒所"},{"name":"西島","role":"中神輿 （リヤカー）"},{"name":"大石","role":"山車"},{"name":"倉田け","role":"山車"},{"name":"倉田ゆ","role":"山車 （桃太郎）"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":"小御輿"},{"name":"一木","role":"神酒所"},{"name":"清野","role":"神酒所"}],"note":"9:00 リヤカー準備、菓子準備<br>9:30 小・中神輿出御、山車出発"},{"time":"10:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":"神酒所"},{"name":"加藤ひ","role":"神酒所"},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":"神酒所"},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"10:30 休憩＠三睦会会館"},{"time":"11:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":"水準備"},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":"(菓子配) 昼準備"},{"name":"鈴木","role":"水準備"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"11:30 松の広場到着<br>　　　　水・お茶・ジュースを冷凍庫に"},{"time":"12:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"12:30 リヤカー準備、菓子準備"},{"time":"13:00","roles":[{"name":"相原","role":"小御輿"},{"name":"小宮山","role":"中神輿 （黄色襷）"},{"name":"吉野秀","role":"山車 （菓子券）"},{"name":"青海","role":"小御輿"},{"name":"剣持","role":"中神輿"},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":"山車 （黄色襷）"},{"name":"長谷川","role":"中神輿"},{"name":"蟹江","role":"中神輿"},{"name":"友滝","role":"中神輿 （リヤカー）"},{"name":"寺本","role":"山車 （桃太郎）"},{"name":"岩崎","role":"小御輿 山車 （リヤカー）"},{"name":"舘野","role":"小御輿"},{"name":"津田","role":"中神輿"},{"name":"稲垣","role":"中神輿"},{"name":"西島","role":"小御輿"},{"name":"大石","role":"山車"},{"name":"倉田け","role":"山車"},{"name":"倉田ゆ","role":"山車 （桃太郎）"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":"小御輿"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"13:00 小・中神輿出御、山車出発<br>13:30 六行会休憩"},{"time":"14:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":"水準備"},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":"(菓子配)"},{"name":"鈴木","role":"水準備"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"14:00 福栄会休憩<br><br>14:30 松の広場到着"},{"time":"15:00","roles":[{"name":"相原","role":"大神輿"},{"name":"小宮山","role":"大神輿 （黄色襷）"},{"name":"吉野秀","role":"大神輿 （黄色襷）"},{"name":"青海","role":"大神輿"},{"name":"剣持","role":"大神輿 （リヤカー）"},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":"神酒所"},{"name":"長谷川","role":"大神輿"},{"name":"蟹江","role":"大神輿 （リヤカー）"},{"name":"友滝","role":"大神輿"},{"name":"寺本","role":"大神輿"},{"name":"岩崎","role":"大神輿"},{"name":"舘野","role":"大神輿"},{"name":"津田","role":"大神輿"},{"name":"稲垣","role":"大神輿"},{"name":"西島","role":null},{"name":"大石","role":"大神輿"},{"name":"倉田け","role":"大神輿"},{"name":"倉田ゆ","role":"大神輿"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":"大神輿"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"15:00 リヤカー準備、接待準備<br>15:30 水・お茶を冷凍庫に"},{"time":"16:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"16:30 セレモニー"},{"time":"17:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":null},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":null},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"おにぎり＠伊勢屋(100)"},{"time":"18:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":"水準備"},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":"水準備"},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":"夕食"},{"name":"鈴木","role":"水準備"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"18:00 水・お茶を冷凍庫に<br>18:30 休憩＠ニチゲン<br>　　　　高張用意"},{"time":"19:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":null},{"name":"吉野秀","role":null},{"name":"青海","role":"大神輿"},{"name":"剣持","role":null},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":"大神輿"},{"name":"蟹江","role":null},{"name":"友滝","role":"高張"},{"name":"寺本","role":"高張"},{"name":"岩崎","role":"水準備"},{"name":"舘野","role":"水準備"},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":"水準備"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"夕食は20時までに済ませること！"},{"time":"20:00","roles":[{"name":"相原","role":"御霊抜き"},{"name":"小宮山","role":"御霊抜き"},{"name":"吉野秀","role":"御霊抜き"},{"name":"青海","role":"御霊抜き"},{"name":"剣持","role":"御霊抜き"},{"name":"大木正","role":null},{"name":"大木佳","role":null},{"name":"藤井","role":null},{"name":"池田","role":null},{"name":"長谷川","role":"御霊抜 （幕持ち）"},{"name":"蟹江","role":"御霊抜 （幕持ち）"},{"name":"友滝","role":"御霊抜き"},{"name":"寺本","role":"御霊抜き"},{"name":"岩崎","role":"御霊抜き"},{"name":"舘野","role":"御霊抜き"},{"name":"津田","role":"御霊抜き"},{"name":"稲垣","role":"御霊抜き"},{"name":"西島","role":null},{"name":"大石","role":"御霊抜き"},{"name":"倉田け","role":"御霊抜 （幕持ち）"},{"name":"倉田ゆ","role":"御霊抜 （幕持ち）"},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":"御霊抜き"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":"20:00 松の広場到着<br>幕・棒の用意<br>20:00 御霊抜き（予定）"},{"time":"21:00","roles":[{"name":"相原","role":"片付け"},{"name":"小宮山","role":"片付け"},{"name":"吉野秀","role":"片付け"},{"name":"青海","role":"片付け"},{"name":"剣持","role":"片付け"},{"name":"大木正","role":"片付け"},{"name":"大木佳","role":"片付け"},{"name":"藤井","role":"片付け"},{"name":"池田","role":"片付け"},{"name":"長谷川","role":"片付け"},{"name":"蟹江","role":"片付け"},{"name":"友滝","role":"片付け"},{"name":"寺本","role":"片付け"},{"name":"岩崎","role":"片付け"},{"name":"舘野","role":"片付け"},{"name":"津田","role":"片付け"},{"name":"稲垣","role":"片付け"},{"name":"西島","role":null},{"name":"大石","role":"片付け"},{"name":"倉田け","role":"片付け"},{"name":"倉田ゆ","role":"片付け"},{"name":"加藤父","role":"片付け"},{"name":"加藤ひ","role":"片付け"},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":"片付け"},{"name":"鈴木","role":"片付け"},{"name":"一木","role":"片付け"},{"name":"清野","role":"片付け"}],"note":null}]},{"date":"6/10（月）","slots":[{"time":"08:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":"清掃"},{"name":"吉野秀","role":null},{"name":"青海","role":"清掃"},{"name":"剣持","role":null},{"name":"大木正","role":"（清掃）"},{"name":"大木佳","role":null},{"name":"藤井","role":"（清掃）"},{"name":"池田","role":"（清掃）"},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":"（清掃）"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":null},{"time":"09:00","roles":[{"name":"相原","role":null},{"name":"小宮山","role":"片付け"},{"name":"吉野秀","role":null},{"name":"青海","role":"片付け"},{"name":"剣持","role":null},{"name":"大木正","role":"神酒所 片付け"},{"name":"大木佳","role":null},{"name":"藤井","role":"神酒所 片付け"},{"name":"池田","role":"神酒所 片付け"},{"name":"長谷川","role":null},{"name":"蟹江","role":null},{"name":"友滝","role":null},{"name":"寺本","role":null},{"name":"岩崎","role":null},{"name":"舘野","role":null},{"name":"津田","role":null},{"name":"稲垣","role":null},{"name":"西島","role":null},{"name":"大石","role":null},{"name":"倉田け","role":null},{"name":"倉田ゆ","role":null},{"name":"加藤父","role":null},{"name":"加藤ひ","role":null},{"name":"加藤宏太郎","role":null},{"name":"加藤宏樹","role":null},{"name":"吉野敏","role":null},{"name":"鈴木","role":"片付け"},{"name":"一木","role":null},{"name":"清野","role":null}],"note":null}]}];
+
+function getRoleBase(role) {
+  if (!role) return null;
+  // Get the core role name (first word before 　or space or （）)
+  const match = role.match(/^([^\s（(]+)/);
+  return match ? match[1] : role;
+}
 
 function showSchedule() {
-    const date = document.getElementById("dateSelect").value;
-    const name = document.getElementById("nameSelect").value;
-    const resultArea = document.getElementById("resultArea");
-    
-    resultArea.innerHTML = "";
-    
-    // タイトル表示
-    const title = document.createElement("div");
-    title.className = "result-title";
-    title.innerText = `${date}の日程 - ${name} さんの予定`;
-    resultArea.appendChild(title);
-    
-    const dayData = festivalData[date];
-    if (!dayData) return;
+  const date = document.getElementById('dateSelect').value;
+  const name = document.getElementById('nameSelect').value;
+  const resultDiv = document.getElementById('result');
 
-    let hasPlan = false;
-    
-    // 時間帯ごとにスケジュールをチェック
-    const times = ["7:00", "8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"];
-    
-    times.forEach(time => {
-        let role = "";
-        
-        // 6/9 21:00 の全体片付け特殊判定
-        if (date === "6/9" && time === "21:00" && allCleanUpList.includes(name)) {
-            role = "片付け（全員）";
-        } else if (dayData.roles[name] && dayData.roles[name][time]) {
-            role = dayData.roles[name][time];
-        } else if (time === "11:00" && dayData.roles[name] && dayData.roles[name]["11:00"]) {
-            // 6/7の11:00~19:00など、まとまったシフトの救済
-            role = dayData.roles[name]["11:00"];
-        }
-        
-        // 役割がある、またはその時間に全体備考がある場合表示
-        const memo = dayData.memos[time];
-        
-        if (role || memo) {
-            // 自分の役割がなくても、全体の動き（備考）があれば表示して流れをわかりやすくする
-            if (!role) role = "（個別の役割指定なし／フリー）";
-            else hasPlan = true;
-            
-            const item = document.createElement("div");
-            item.className = "schedule-item";
-            
-            let memoHtml = memo ? `<div class="memo-text"><strong>【全体の動き/備考】</strong><br>${memo.replace(/\s\/\s/g, '<br>')}</div>` : '';
-            
-            item.innerHTML = `
-                <div class="time-badge">${time}〜</div>
-                <div class="role-text">担当： ${role}</div>
-                ${memoHtml}
-            `;
-            resultArea.appendChild(item);
-        }
+  if (!date || !name) {
+    resultDiv.innerHTML = '<div class="placeholder"><span class="placeholder-icon">⚠️</span><p>日付と名前の両方を<br>選択してください</p></div>';
+    return;
+  }
+
+  const dayData = DATA.find(d => d.date === date);
+  if (!dayData) {
+    resultDiv.innerHTML = '<div class="no-schedule">データが見つかりません</div>';
+    return;
+  }
+
+  // Count roles for this person
+  const mySlots = dayData.slots.filter(slot => {
+    const me = slot.roles.find(r => r.name === name);
+    return me && me.role;
+  });
+
+  let html = '';
+
+  // Hero card
+  html += `<div class="my-role-hero">
+    <div class="date-badge">${date}</div>
+    <div class="person-name">👤 ${name} さん</div>
+    <div class="role-count">担当スロット：${mySlots.length}件</div>
+  </div>`;
+
+  if (mySlots.length === 0) {
+    html += `<div class="no-schedule">🎋 ${date} は担当なしです</div>`;
+  }
+
+  // Time cards
+  dayData.slots.forEach(slot => {
+    const me = slot.roles.find(r => r.name === name);
+    const myRole = me ? me.role : null;
+    const myRoleBase = getRoleBase(myRole);
+
+    // Find same-role people (excluding myself)
+    const sameRolePeople = myRole ? slot.roles.filter(r => {
+      if (r.name === name || !r.role) return false;
+      const base = getRoleBase(r.role);
+      return base && myRoleBase && base === myRoleBase;
+    }) : [];
+
+    // Find other active people (excluding myself and same-role)
+    const otherPeople = slot.roles.filter(r => {
+      if (r.name === name || !r.role) return false;
+      const base = getRoleBase(r.role);
+      if (myRoleBase && base === myRoleBase) return false;
+      return true;
     });
-    
-    if (!hasPlan && resultArea.querySelectorAll('.role-text').length === 0) {
-        resultArea.innerHTML += `<div class="no-plan">この日の予定は登録されていません。</div>`;
-    }
-}
-</script>
 
+    // Only show times that have activity (my role OR others working OR note)
+    if (!myRole && otherPeople.length === 0 && !slot.note) return;
+
+    html += `<div class="time-card">
+      <div class="time-header">
+        <span class="time-label">🕐 ${slot.time}</span>
+        ${slot.note ? `<span class="time-note">${slot.note}</span>` : ''}
+      </div>`;
+
+    // My role
+    if (myRole) {
+      html += `<div class="my-role-block">
+        <div class="role-label">⭐ あなたの担当</div>
+        <div class="role-text">${myRole}</div>
+      </div>`;
+
+      // Same role people
+      if (sameRolePeople.length > 0) {
+        html += `<div class="same-role-block">
+          <div class="role-label">🤝 同じ担当の仲間</div>
+          <div class="same-role-list">`;
+        sameRolePeople.forEach(p => {
+          html += `<span class="name-chip">${p.name}</span>`;
+        });
+        html += `</div></div>`;
+      }
+    } else if (slot.note) {
+      // No role but has note
+      html += `<div class="no-duty">この時間帯は担当なし</div>`;
+    }
+
+    // Other people's roles
+    if (otherPeople.length > 0) {
+      html += `<div class="others-block">
+        <div class="role-label">📋 この時間の他の担当</div>
+        <div class="others-list">`;
+      otherPeople.forEach(p => {
+        html += `<div class="other-row">
+          <span class="other-name">${p.name}</span>
+          <span class="other-role">${p.role}</span>
+        </div>`;
+      });
+      html += `</div></div>`;
+    }
+
+    html += '</div>'; // time-card
+  });
+
+  resultDiv.innerHTML = html;
+  resultDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Allow pressing Enter to search
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') showSchedule();
+});
+</script>
 </body>
 </html>
