@@ -527,9 +527,8 @@ const DATA = [{"date":"6/7（金）","slots":[{"time":"09:00","roles":[{"name":"
 
 function getRoleBase(role) {
   if (!role) return null;
-  // Get the core role name (first word before 　or space or （）)
-  const match = role.match(/^([^\s（(]+)/);
-  return match ? match[1] : role;
+  // 完全一致で比較：「大神輿」と「大神輿（黄色襷）」は別の役割として扱う
+  return role.trim();
 }
 
 function showSchedule() {
