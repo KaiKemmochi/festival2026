@@ -464,10 +464,10 @@
       <label>📅 日付</label>
       <select id="dateSelect">
         <option value="">— 日付を選ぶ —</option>
-        <option value="6/7（金）">6/7（金）</option>
-        <option value="6/8（土）">6/8（土）</option>
-        <option value="6/9（日）">6/9（日）</option>
-        <option value="6/10（月）">6/10（月）</option>
+        <option value="6/7（金）">6/5（金）</option>
+        <option value="6/8（土）">6/6（土）</option>
+        <option value="6/9（日）">6/7（日）</option>
+        <option value="6/10（月）">6/8（月）</option>
       </select>
       <span class="select-arrow">▼</span>
     </div>
@@ -541,6 +541,12 @@ function showSchedule() {
     return;
   }
 
+  const DATE_LABEL = {
+    '6/7（金）': '6/5（金）',
+    '6/8（土）': '6/6（土）',
+    '6/9（日）': '6/7（日）',
+    '6/10（月）': '6/8（月）'
+  };
   const dayData = DATA.find(d => d.date === date);
   if (!dayData) {
     resultDiv.innerHTML = '<div class="no-schedule">データが見つかりません</div>';
@@ -557,7 +563,7 @@ function showSchedule() {
 
   // Hero card
   html += `<div class="my-role-hero">
-    <div class="date-badge">${date}</div>
+    <div class="date-badge">${DATE_LABEL[date] || date}</div>
     <div class="person-name">👤 ${name} さん</div>
     <div class="role-count">担当スロット：${mySlots.length}件</div>
   </div>`;
